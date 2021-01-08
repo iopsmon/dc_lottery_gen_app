@@ -10,6 +10,7 @@ The screen shot below shows the numbers for the four lottery games, and I’ve i
 
 ![](images/lotto.jpg)
 
+Config:
 A python script generates the random numbers and the data gets ingested into an index.
 
 Another python script downloads from the National Lottery a csv file containing 180 days’ worth of results from the Lotto game.
@@ -18,6 +19,7 @@ Ensure you have the below indexes setup and have a read of the inputs.conf and p
 
 index=lottery  
 
+Note:
 I only tested this with Splunk version 8.x which comes with python 3
 
 So this shows you that you can ingest almost any kind of data and have a little fun!
