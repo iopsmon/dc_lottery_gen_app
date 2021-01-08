@@ -1,0 +1,28 @@
+[app/ui]
+version = 8.0.5.1
+modtime = 1610006584.450566000
+
+[app/launcher]
+version = 8.0.5.1
+modtime = 1610006584.452156000
+
+[]
+access = read : [ * ], write : [ admin, power ]
+export = system
+version = 8.0.5.1
+modtime = 1609963423.405734000
+
+[app/package/check_for_updates]
+version = 8.0.5.1
+modtime = 1610006584.452664000
+
+[views/lotto]
+version = 8.0.5.1
+modtime = 1610087404.368623000
+
+[savedsearches/lotto_number_generate]
+access = read : [ * ], write : [ admin, power ]
+export = system
+owner = admin
+version = 8.0.5.1
+modtime = 1610006992.054947000

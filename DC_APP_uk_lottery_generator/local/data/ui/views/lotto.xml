@@ -1,0 +1,240 @@
+<form theme="dark">
+  <label>UK Lottery Numbers Auto Generator   command =  `my_lotto`</label>
+  <init>
+    <set token="showExpandLink1">true</set>
+    <set token="showExpandLink2">true</set>
+    <set token="showExpandLink3">true</set>
+    <set token="showExpandLink4">true</set>
+    <set token="showExpandLink5">true</set>
+    <set token="showExpandLink6">true</set>
+  </init>
+  <fieldset submitButton="false"></fieldset>
+  <row>
+    <panel>
+      <title>Date And Time</title>
+      <single>
+        <search>
+          <query>index="lottery" sourcetype="lottery:log" 
+| eval epoch=_time
+| eval my_time=strftime(epoch, "%d-%m-%Y %H:%M:%S")
+| head 1 | table my_time</query>
+          <earliest>-15m</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+          <refresh>2m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="colorBy">value</option>
+        <option name="colorMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="numberPrecision">0</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="rangeValues">[0,30,70,100]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="showSparkline">1</option>
+        <option name="showTrendIndicator">0</option>
+        <option name="trellis.enabled">0</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">absolute</option>
+        <option name="unitPosition">before</option>
+        <option name="useColors">0</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="height">220</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Thunderball</title>
+      <single>
+        <search>
+          <query>index="lottery" sourcetype="lottery:log" thunderball=*  
+| fields _time, thunderball 
+| rex field=_raw "(thunderball=(?P&lt;thunderball_numbers&gt;.+))"
+| head 1 
+| stats count values(thunderball_numbers) | fields - count</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+          <refresh>2m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="colorBy">value</option>
+        <option name="colorMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="numberPrecision">0</option>
+        <option name="rangeColors">["0x53a051", "0x0877a6", "0xf8be34", "0xf1813f", "0xdc4e41"]</option>
+        <option name="rangeValues">[0,30,70,100]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="showSparkline">1</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="trellis.enabled">0</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">absolute</option>
+        <option name="unitPosition">after</option>
+        <option name="useColors">0</option>
+        <option name="useThousandSeparators">1</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Euro Millions</title>
+      <single>
+        <search>
+          <query>index="lottery" sourcetype="lottery:log" euro_millions=*  
+| fields _time, euro_millions 
+| rex field=_raw "(euro_millions=(?P&lt;euro_millions_numbers&gt;.+))"
+| head 1 
+| stats count values(euro_millions_numbers) | fields - count</query>
+          <earliest>-4h@m</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+          <refresh>2m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Lotto Numbers</title>
+      <single>
+        <search>
+          <query>index="lottery" sourcetype="lottery:log" lotto_numbers=*  
+| fields _time, lotto_numbers
+| rex field=_raw "(lotto_numbers=(?P&lt;lotto_numbers_numbers&gt;.+))"
+| head 1 
+| stats count values(lotto_numbers_numbers) | fields - count</query>
+          <earliest>-4h@m</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+          <refresh>2m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+    <panel>
+      <title>Set For Life</title>
+      <single>
+        <search>
+          <query>index="lottery" sourcetype="lottery:log" set_for_life=*  
+| fields _time, set_for_life
+| rex field=_raw "(set_for_life=(?P&lt;set_for_life_numbers&gt;.+))"
+| head 1 
+| stats count values(set_for_life_numbers) | fields - count</query>
+          <earliest>-4h@m</earliest>
+          <latest>now</latest>
+          <sampleRatio>1</sampleRatio>
+          <refresh>2m</refresh>
+          <refreshType>delay</refreshType>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </single>
+    </panel>
+  </row>
+  <row depends="$alwaysHideCSSPanel$">
+    <panel>
+      <!-- This changes the font sizes -->
+      <html>
+        <style>
+          table tbody tr td{
+            font-size:110% !important;
+            }
+          table thead tr th{
+          font-size:100% !important;
+          }
+       
+         table th td {
+         color:#b3b300;
+        
+         }
+          table tr td {
+         color:#b3b300;
+         }
+        </style>
+      </html>
+    </panel>
+  </row>
+  <row depends="$alwaysHideCSSStyleOverride$">
+    <panel>
+      <html>
+      <html>
+        <style>
+          div[id^="linkCollapse"],
+          div[id^="linkExpand"]{
+            width: 32px !important;
+            float: right;
+          }
+          div[id^="linkCollapse"] button,
+          div[id^="linkExpand"] button{
+            flex-grow: 0;
+            border-radius: 25px;
+            border-width: thin;
+            border-color: lightgrey;
+            border-style: inset;
+            width: 32px;
+            padding: 0px;
+          }
+          div[id^="linkCollapse"] label,
+          div[id^="linkExpand"] label{
+            display:none;
+          }
+          div[id^="panel"].fieldset{
+            padding: 0px;
+          }
+        </style>
+      </html>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel id="panel1">
+      <title>Lotto Results</title>
+      <input id="linkCollapse1" type="link" token="tokLinkCollapse1" searchWhenChanged="true" depends="$showCollapseLink1$">
+        <label></label>
+        <choice value="collapse">-</choice>
+        <change>
+          <condition value="collapse">
+            <unset token="showCollapseLink1"></unset>
+            <set token="showExpandLink1">true</set>
+            <unset token="form.tokLinkCollapse1"></unset>
+          </condition>
+        </change>
+      </input>
+      <input id="linkExpand1" type="link" token="tokLinkExpand1" searchWhenChanged="true" depends="$showExpandLink1$">
+        <label></label>
+        <choice value="expand">+</choice>
+        <change>
+          <condition value="expand">
+            <set token="showCollapseLink1">true</set>
+            <unset token="showExpandLink1"></unset>
+            <unset token="form.tokLinkExpand1"></unset>
+          </condition>
+        </change>
+      </input>
+      <table rejects="$showExpandLink1$">
+        <search>
+          <query>| inputlookup lotto_results_look
+| fields "Ball 1", "Ball 2", "Ball 2", "Ball 3", "Ball 4", "Ball 5", "Ball 6" "Bonus Ball", DrawDate 
+| rename "Ball 1" AS ball_1, "Ball 2" AS ball_2, "Ball 3" AS ball_3, "Ball 4" AS ball_4, "Ball 5" AS ball_5, "Ball 6" AS ball_6 "Bonus Ball" AS bonus_ball DrawDate AS draw_date
+| eval ln="["+ball_1+","+ball_2+","+ball_3+","+ball_4+","+ball_5+","+ball_6+"]"
+| eval bb = "["+bonus_ball+"]"
+| eval lotto_numbers = ln +""+bb
+| table draw_date lotto_numbers</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</form>
