@@ -10,10 +10,13 @@ The screen shot below shows the numbers for the four lottery games, and I’ve i
 
 ![](images/lotto.jpg)
 
-Config:
-A python script generates the random numbers and the data gets ingested into an index.
+Install:
+Download and extract the app, then install onto a search head, ensure you have the "lottery" index setup and it should be good to go.
 
-Another python script downloads from the National Lottery a csv file containing 180 days’ worth of results from the Lotto game.
+Config:
+A python script generates the random numbers for all the four games, and the data gets ingested into an index every 5 minutes.
+
+Another python script downloads from the National Lottery a csv file containing 180 days’ worth of results from the Lotto game, this runs 13:00 hours each day, the data is put intot he lookups folder.
 
 Ensure you have the below indexes setup and have a read of the inputs.conf and props.conf to get familiar with the config. See the bin folder for the python scripts.
 
