@@ -6,7 +6,7 @@ I was dreaming about winning the lottery, just like you! But the reality is very
 
 I then  started by ingesting the lottery result numbers to see if I could find a pattern of numbers, but again dreaming!…So I ended up creating this auto number generator, and added the python script as a command. So just a bit of fun under-lock down.
 
-The screen shot below shows the numbers for the four lottery games, and I’ve ingested results from one of the games called Lotto. The numbers get automatically generated every 5 minutes or you can run the command "`my_lotto`" and get some instance numbers and use this should you play.
+The screen shot below shows the numbers for the four lottery games, and I’ve ingested results from one of the games called Lotto. The numbers get automatically generated every 5 minutes or you can run the macro command "`my_lotto`" and get some instance numbers and use this should you play.
 
 ![](images/lotto.jpg)
 
